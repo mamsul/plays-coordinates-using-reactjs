@@ -11,8 +11,10 @@ const DraggableElement = () => {
     x: 0,
     y: 0,
   });
-  let initX = 50;
-  let initY = 50;
+  const [init, setInit] = useState({
+    x: 0,
+    y: 0,
+  });
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -29,8 +31,10 @@ const DraggableElement = () => {
       x: firstX,
       y: firstY,
     });
-    initX = elementX;
-    initY = elementY;
+    setInit({
+      x: elementX,
+      y: elementY,
+    });
     onMouseMove(e);
   };
 
@@ -48,8 +52,8 @@ const DraggableElement = () => {
     const clientX = e.clientX - dragParent.current.offsetLeft;
     const clientY = e.clientY - dragParent.current.offsetTop;
     setPosition({
-      x: initX + clientX - first.x,
-      y: initY + clientY - first.y,
+      x: init.x + clientX - first.x,
+      y: init.y + clientY - first.y,
     });
   }
 
